@@ -4,7 +4,7 @@ author: "Sasank Vishnubhatla"
 date: "January 10, 2019"
 html_document:
   runtime: shiny
-  theme: simplex 
+  theme: simplex
   df_print: paged
   dev: 'svg'
 pdf_document:
@@ -23,6 +23,15 @@ GitHub Repository: [sv4u/goalie-and-skater-heat-maps](https://github.com/sv4u/go
 # Introduction
 
 In the NHL, players have their *sweet-spots*. For skaters, it can be the top of a certain circle, or right in-front of the net. For goalies, it could be where their vision is best and where they have the best angle to cut down a shot. All players have these sweet-spots, but it is difficult to analytically say where they are. By using shot location data, we can determine these locations and create models show where goalies and skaters need improvement and where they succeed.
+
+Before we jump in, let's clean up our R environment and also load in some libraries we will be using.
+
+```{r}
+rm(list = ls())
+
+library(purrr)
+library(ggplot2)
+```
 
 # Data Formatting
 
@@ -117,6 +126,45 @@ get.shots.per.goal = function(data) {
 ```
 
 > Note: when using `get.shots.per.goal`, if there were no goals scored, R will handle the division by zero by returning infinity. This will be problematic when graphing data. I am still working on a good solution to this problem. [Earlier](http://sasankvishnubhatla.net/shots_per_goal/analysis.html), I used 200 as a substitute value. However, 200 still skews graphs, which is unideal.
+
+```{r}
+get.games = function(data) {
+	unique(data$game)
+}
+
+get.single.game = function(data, game_id) {
+	subset(data, game == game_id)
+}
+
+get.all.games = function(data) {
+	games = get.games(data)
+	Map(function(x) get.single.game(data, x), games)
+}
+```
+
+Now, we can create our game by game statistic functions:
+
+```{r}
+get.game.goal.percent = function(data) {
+	gameframe = get.all.games(data)
+	games.gp = map(gameframe, function(x) get.goal.percent(x))
+	unlist(games.gp, use.names = FALSE)
+}
+
+get.game.save.percent = function(data) {
+	gameframe = get.all.games(data)
+	games.sp = map(gameframe, function(x) get.save.percent(x))
+	unlist(games.sp, use.names = FALSE)
+}
+
+get.game.shots.per.goal = function(data) {
+	gameframe = get.all.games(data)
+	games.spg = map(gameframe, function(x) get.shots.per.goal(x))
+	unlist(games.spg, use.names = FALSE)
+}
+```
+
+We've now written our generic data handling functions.
 
 ## Goalies
 
