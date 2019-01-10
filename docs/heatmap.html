@@ -314,20 +314,118 @@ $(document).ready(function () {
 </div>
 
 
-<p>Last Update: 2019-01-10 13:23:58</p>
+<p>Last Update: 2019-01-10 14:22:16</p>
 <p>GitHub Repository: <a href="https://github.com/sv4u/goalie-and-skater-heat-maps">sv4u/goalie-and-skater-heat-maps</a></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In the NHL, players have their “sweet-spots”. For skaters, it can be the top of a certain circle, or right in-front of the net. For goalies, it could be where their vision is best and where they have the best angle to cut down a shot. All players have these sweet-spots, but it is difficult to analytically say where they are. By using shot location data, we can determine these locations and create models show where goalies and skaters need improvement and where they succeed.</p>
+<p>In the NHL, players have their <em>sweet-spots</em>. For skaters, it can be the top of a certain circle, or right in-front of the net. For goalies, it could be where their vision is best and where they have the best angle to cut down a shot. All players have these sweet-spots, but it is difficult to analytically say where they are. By using shot location data, we can determine these locations and create models show where goalies and skaters need improvement and where they succeed.</p>
 </div>
 <div id="data-formatting" class="section level1">
 <h1>Data Formatting</h1>
-<p>To start, we need to read in our data. Our data is formatted nicely in CSV format. We have data from the 2016-2017 season, 2017-2018 season, and 2018-2019 season (up to 1/7/19). This data was downloaded from <a href="http://www.moneypuck.com">MoneyPuck</a>.</p>
+<p>To start, we need to read in our data. Our data is formatted nicely in CSV format. We have data from the 2016-2017 season, 2017-2018 season, and 2018-2019 season (up to 1/7/19). This data was downloaded from <a href="http://www.moneypuck.com">MoneyPuck</a>. Let’s first start by loading in all three seasons of data:</p>
+<pre class="r"><code>data.2016 = read.csv(&quot;data/2016.csv&quot;)
+data.2017 = read.csv(&quot;data/2017.csv&quot;)
+data.2018 = read.csv(&quot;data/2018.csv&quot;)</code></pre>
+<blockquote>
+<p>Note: this will take a <em>relatively</em> long time to compute as the datasets are large. Each dataset contains all shot data (<strong>including</strong> playoffs).</p>
+</blockquote>
+<p>We’ll only look at regular season data. The playoffs in the NHL are a beast of their own.</p>
+<pre class="r"><code>get.regular.season = function(data) {
+    subset(data, isPlayoffGame == 0)
+}
+
+season.2016 = get.regular.season(data.2016)
+season.2017 = get.regular.season(data.2017)
+season.2018 = get.regular.season(data.2018)</code></pre>
+<p>Now that we have our data, we can remove extraneous columns. Here is a table of what columns we are keeping, and what we are renaming them to:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Old Column</th>
+<th>New Column</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>xCordAdjusted</td>
+<td>x</td>
+</tr>
+<tr class="even">
+<td>yCordAdjusted</td>
+<td>y</td>
+</tr>
+<tr class="odd">
+<td>goal</td>
+<td>goal</td>
+</tr>
+<tr class="even">
+<td>shotAngleAdjusted</td>
+<td>angle</td>
+</tr>
+<tr class="odd">
+<td>goalieNameForShot</td>
+<td>goalie_name</td>
+</tr>
+<tr class="even">
+<td>shooterName</td>
+<td>skater_name</td>
+</tr>
+<tr class="odd">
+<td>game_id</td>
+<td>game</td>
+</tr>
+</tbody>
+</table>
+<p>Now, here is the R code to do this subsetting of the original dataset.</p>
+<pre class="r"><code>get.helpful.data = function(data) {
+    data.frame(x = data$xCordAdjusted,
+           y = data$yCordAdjusted,
+           goal = data$goal,
+           angle = data$shotAngleAdjusted,
+           goalie_name = data$goalieNameForShot,
+           skater_name = data$shooterName,
+           game = data$game_id)
+}
+
+analysis.2016 = get.helpful.data(season.2016)
+analysis.2017 = get.helpful.data(season.2017)
+analysis.2018 = get.helpful.data(season.2018)</code></pre>
+<p>Now, we have all the data we need.</p>
 </div>
 <div id="function-definitions" class="section level1 tabset tabset-fade">
 <h1>Function Definitions</h1>
 <div id="generic" class="section level2">
 <h2>Generic</h2>
+<p>From our data, we can calculate some very important statistics like the following:</p>
+<ul>
+<li>Goal Percent: goals per total shots</li>
+<li>Save Percent: saves (total shots - goals) per total shots</li>
+<li>Shots per Goal: total shots per goal</li>
+</ul>
+<p>Additionally, we can break up our data by game. There are some generic functions we can write to help for both goalies and skaters. Let’s write them now!</p>
+<pre class="r"><code>get.goal.percent = function(data) {
+    shots = length(data$goal)
+    temp = subset(data, goal == 1)
+    goals = length(temp$goal)
+    goals / shots
+}
+
+get.save.percent = function(data) {
+    shots = length(data$goal)
+    temp = subset(data, goal == 1)
+    goals = length(temp$goal)
+    (shots - goals) / shots
+}
+
+get.shots.per.goal = function(data) {
+    shots = length(data$goal)
+    temp = subset(data, goal == 1)
+    goals = length(temp$goal)
+    shots / goal
+}</code></pre>
+<blockquote>
+<p>Note: when using <code>get.shots.per.goal</code>, if there were no goals scored, R will handle the division by zero by returning infinity. This will be problematic when graphing data. I am still working on a good solution to this problem. <a href="http://sasankvishnubhatla.net/shots_per_goal/analysis.html">Earlier</a>, I used 200 as a substitute value. However, 200 still skews graphs, which is unideal.</p>
+</blockquote>
 </div>
 <div id="goalies" class="section level2">
 <h2>Goalies</h2>
