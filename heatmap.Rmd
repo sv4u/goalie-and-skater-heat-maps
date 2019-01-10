@@ -1,0 +1,67 @@
+---
+title: "NHL Goalie and Skater Heat Maps"
+author: "Sasank Vishnubhatla"
+date: "January 10, 2019"
+html_document:
+  runtime: shiny
+  theme: simplex
+  df_print: paged
+  dev: 'svg'
+pdf_document:
+  df_print: kable
+  toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+Last Update: `r Sys.time()`
+
+GitHub Repository: [sv4u/goalie-and-skater-heat-maps](https://github.com/sv4u/goalie-and-skater-heat-maps)
+
+# Introduction
+
+# Data Formatting
+
+# Function Definitions {.tabset .tabset-fade}
+
+## Generic
+
+## Goalies
+
+## Skaters
+
+# Analysis {.tabset .tabset-fade}
+
+## Goalies {.tabset .tabset-fade}
+
+### Matt Murray
+
+### Casey DeSmith
+
+### Marc-Andre Fleury
+
+### Andrei Vasilevskiy
+
+### Carey Price
+
+### Braden Holtby
+
+### John Gibson
+
+## Skaters {.tabset .tabset-fade}
+
+### Sidney Crosby
+
+### Evgeni Malkin
+
+### Alex Ovechkin
+
+### Nikita Kucherov
+
+### Jake Guentzel
+
+### Erik Karlsson
+
+### Kris Letang
