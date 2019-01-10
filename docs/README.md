@@ -1,3 +1,3 @@
 # Docs
 
-This folder contains all renders from [heatmap.rmd](../heatmap.Rmd).
+This folder contains all renders from [heatmap.Rmd](../heatmap.Rmd).
