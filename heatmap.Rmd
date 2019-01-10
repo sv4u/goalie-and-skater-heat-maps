@@ -22,7 +22,11 @@ GitHub Repository: [sv4u/goalie-and-skater-heat-maps](https://github.com/sv4u/go
 
 # Introduction
 
+In the NHL, players have their "sweet-spots". For skaters, it can be the top of a certain circle, or right in-front of the net. For goalies, it could be where their vision is best and where they have the best angle to cut down a shot. All players have these sweet-spots, but it is difficult to analytically say where they are. By using shot location data, we can determine these locations and create models show where goalies and skaters need improvement and where they succeed.
+
 # Data Formatting
+
+To start, we need to read in our data. Our data is formatted nicely in CSV format. We have data from the 2016-2017 season, 2017-2018 season, and 2018-2019 season (up to 1/7/19). This data was downloaded from [MoneyPuck](http://www.moneypuck.com).
 
 # Function Definitions {.tabset .tabset-fade}
 
