@@ -121,7 +121,7 @@ get.shots.per.goal = function(data) {
 	shots = length(data$goal)
 	temp = subset(data, goal == 1)
 	goals = length(temp$goal)
-	shots / goal
+	shots / goals
 }
 ```
 
@@ -264,6 +264,81 @@ plot
 ## Goalies {.tabset .tabset-fade}
 
 ### Matt Murray
+
+Matt Murray is a 24 year old phenomenon who has already won 2 Stanley Cups. Let's take a look at how he's done it.
+
+
+```{r}
+murray.2016 = get.goalie.data(analysis.2016, "Matt Murray")
+murray.2017 = get.goalie.data(analysis.2017, "Matt Murray")
+murray.2018 = get.goalie.data(analysis.2018, "Matt Murray")
+```
+
+Let's start by calculating some of his stats for each season and then tabularizing.
+
+```{r}
+murray.2016.sp = get.save.percent(murray.2016)
+murray.2017.sp = get.save.percent(murray.2017)
+murray.2018.sp = get.save.percent(murray.2018)
+
+murray.2016.gp = get.goal.percent(murray.2016)
+murray.2017.gp = get.goal.percent(murray.2017)
+murray.2018.gp = get.goal.percent(murray.2018)
+
+murray.2016.spg = get.shots.per.goal(murray.2016)
+murray.2017.spg = get.shots.per.goal(murray.2017)
+murray.2018.spg = get.shots.per.goal(murray.2018)
+```
+
+Now, let's put it in a table:
+
+| Season | Save Percent | Goal Percent | Shots Per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2016-2017 | `r murray.2016.sp` | `r murray.2016.gp` | `r murray.2016.spg` |
+| 2017-2018 | `r murray.2017.sp` | `r murray.2017.gp` | `r murray.2017.spg` |
+| 2018-2019 | `r murray.2018.sp` | `r murray.2018.gp` | `r murray.2018.spg` |
+
+We can look at his game by game data also.
+
+```{r}
+murray.2016.games.sp = get.game.save.percent(murray.2016)
+murray.2016.games.gp = get.game.goal.percent(murray.2016)
+murray.2016.games.spg = get.game.shots.per.goal(murray.2016)
+
+murray.2017.games.sp = get.game.save.percent(murray.2017)
+murray.2017.games.gp = get.game.goal.percent(murray.2017)
+murray.2017.games.spg = get.game.shots.per.goal(murray.2017)
+
+murray.2018.games.sp = get.game.save.percent(murray.2018)
+murray.2018.games.gp = get.game.goal.percent(murray.2018)
+murray.2018.games.spg = get.game.shots.per.goal(murray.2018)
+```
+
+Let's look at his save percentage graphs:
+
+```{r}
+murray.2016.sp.plot = graph.trend(murray.2016.games.sp, "Save Percentage", "#000000", "#FCB514", "Matt Murray (2016)")
+murray.2016.sp.plot
+
+murray.2017.sp.plot = graph.trend(murray.2017.games.sp, "Save Percentage", "#000000", "#FCB514", "Matt Murray (2017)")
+murray.2017.sp.plot
+
+murray.2018.sp.plot = graph.trend(murray.2018.games.sp, "Save Percentage", "#000000", "#FCB514", "Matt Murray (2018)")
+murray.2018.sp.plot
+```
+
+And now, let's take a look at his shot location data.
+
+```{r}
+murray.2016.locations.plot = graph.shot.locations(murray.2016, "#000000", "#FCB514", "Matt Murray (2016)")
+murray.2016.locations.plot
+
+murray.2017.locations.plot = graph.shot.locations(murray.2017, "#000000", "#FCB514", "Matt Murray (2017)")
+murray.2017.locations.plot
+
+murray.2018.locations.plot = graph.shot.locations(murray.2018, "#000000", "#FCB514", "Matt Murray (2018)")
+murray.2018.locations.plot
+```
 
 ### Casey DeSmith
 
