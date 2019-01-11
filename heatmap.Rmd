@@ -201,7 +201,7 @@ Given specific data, we should be able to graph the location of shots. Let's wri
 ```{r}
 graph.shot.locations = function(data, primary, secondary, name) {
 	plot = ggplot(data) +
-		geom_hex(aes(x = x, y = y, alpha = ..count..), fill = primary, color = secondary) +
+		geom_hex(aes(x = x, y = y, alpha = log(..count..)), fill = primary, color = secondary) +
 		labs(title = paste(name, "Shot Locations", sep = " "), x = "X Position", y = "Y Position") +
 		theme_minimal()
 	plot
@@ -339,6 +339,8 @@ murray.2017.locations.plot
 murray.2018.locations.plot = graph.shot.locations(murray.2018, "#000000", "#FCB514", "Matt Murray (2018)")
 murray.2018.locations.plot
 ```
+
+From the darkness of each hex bin, we can use that as a percent chance that Murray saved the shot. Though the darkness is not exactly the save percentage of the shots, it's the log chance of Murray seeing the shot. This log chance is a good likelihood function of Murray saving the shot. We can see that Murray's weakness is very close to him. Those shots are most likely to be tipped or deflected shots, not actual shots. We can see his weakness is the top of the circles, based on the X and Y coordinates.
 
 ### Casey DeSmith
 
