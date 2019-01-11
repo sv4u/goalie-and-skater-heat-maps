@@ -164,11 +164,100 @@ get.game.shots.per.goal = function(data) {
 }
 ```
 
+Also, we'll need a function to get match-ups between a specific goalie and skater. Let's write that here, instead of in our goalies *and* our skaters sections.
+
+```{r}
+get.matchup.data = function(data, goalie, skater) {
+	subset(data, goalie_name == goalie & skater_name == skater)
+}
+```
+
 We've now written our generic data handling functions.
 
 ## Goalies
 
+Let's first start with a function to get data for a specific goalie.
+
+```{r}
+get.goalie.data = function(data, name) {
+	subset(data, goalie_name == name)
+}
+```
+
 ## Skaters
+
+Let's first start with a function to get data for a specific skater.
+
+```{r}
+get.skater.data = function(data, name) {
+	subset(data, skater_name == name)
+}
+```
+
+## Graphing
+
+Given specific data, we should be able to graph the location of shots. Let's write a function that uses ggplot to do so.
+
+```{r}
+graph.shot.locations = function(data, primary, secondary, name) {
+	plot = ggplot(data) +
+		geom_hex(aes(x = x, y = y, alpha = ..count..), fill = primary, color = secondary) +
+		labs(title = paste(name, "Shot Locations", sep = " "), x = "X Position", y = "Y Position") +
+		theme_minimal()
+	plot
+}
+```
+
+To see a test of what this does, let's quickly make a graph of Roberto Luongo's shots against him.
+
+```{r}
+luongo = get.goalie.data(analysis.2017, "Roberto Luongo")
+plot = graph.shot.locations(luongo, "#041E42", "#C8102E", "Roberto Luongo")
+
+plot
+```
+
+Now, let's see how it looks for a skater. Let's look at Bryan Rust.
+
+```{r}
+rust = get.skater.data(analysis.2017, "Bryan Rust")
+plot = graph.shot.locations(rust, "#000000", "#FCB514", "Bryan Rust")
+
+plot
+```
+
+Furthermore, we should be able to graph trends in certain statistics.
+
+```{r}
+graph.trend = function(trend, type, primary, secondary, name) {
+	frame = data.frame(x = c(1:length(trend)), y = trend)
+	disp = paste(name, type, "by Game", sep = " ")
+	plot = ggplot(frame) +
+		geom_point(aes(x = x, y = y), color = primary) +
+		geom_smooth(aes(x = x, y = y), method = "lm", color = primary, fill = secondary) +
+		labs(title = disp, x = "Game Played", y = type) +
+		theme_minimal()
+	plot
+}
+```
+
+So, let's go back to Luongo and look at his save percentage per game.
+
+```{r}
+luongo.game.sp = get.game.save.percent(luongo)
+plot = graph.trend(luongo.game.sp, "Save Percentage", "#041E42", "#C8102E", "Roberto Luongo")
+
+plot
+```
+
+We can also see the shooter's perspective. Let's look at Rust's shooting percentage (goal percent).
+
+```{r}
+rust.game.gp = get.game.goal.percent(rust)
+plot = graph.trend(rust.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Bryan Rust")
+
+plot
+```
 
 # Analysis {.tabset .tabset-fade}
 
