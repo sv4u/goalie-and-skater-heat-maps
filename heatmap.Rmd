@@ -346,6 +346,67 @@ From the graph, we can see that Murray has struggled with shots near the circles
 
 ### Casey DeSmith
 
+On January 11th, Casey DeSmith inked a 3 year extension with the Penguins with an average annual value of \$1.25 million. His rise to earn this paycheck started with exemplary play during the 2017-2018 season and that has carried over into this season. Let's see how he got here!
+
+```{r}
+desmith.2017 = get.goalie.data(analysis.2017, "Casey DeSmith")
+desmith.2018 = get.goalie.data(analysis.2018, "Casey DeSmith")
+```
+
+Let's start by calculating some of his stats for each season and then tabularizing.
+
+```{r}
+desmith.2017.sp = get.save.percent(desmith.2017)
+desmith.2018.sp = get.save.percent(desmith.2018)
+
+desmith.2017.gp = get.goal.percent(desmith.2017)
+desmith.2018.gp = get.goal.percent(desmith.2018)
+
+desmith.2017.spg = get.shots.per.goal(desmith.2017)
+desmith.2018.spg = get.shots.per.goal(desmith.2018)
+```
+
+Now, let's put it in a table:
+
+| Season | Save Percent | Goal Percent | Shots Per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2017-2018 | `r desmith.2017.sp` | `r desmith.2017.gp` | `r desmith.2017.spg` |
+| 2018-2019 | `r desmith.2018.sp` | `r desmith.2018.gp` | `r desmith.2018.spg` |
+
+We can look at his game by game data also.
+
+```{r}
+desmith.2017.games.sp = get.game.save.percent(desmith.2017)
+desmith.2017.games.gp = get.game.goal.percent(desmith.2017)
+desmith.2017.games.spg = get.game.shots.per.goal(desmith.2017)
+
+desmith.2018.games.sp = get.game.save.percent(desmith.2018)
+desmith.2018.games.gp = get.game.goal.percent(desmith.2018)
+desmith.2018.games.spg = get.game.shots.per.goal(desmith.2018)
+```
+
+Let's look at his save percentage graphs:
+
+```{r}
+desmith.2017.sp.plot = graph.trend(desmith.2017.games.sp, "Save Percentage", "#000000", "#FCB514", "Casey DeSmith (2017)")
+desmith.2017.sp.plot
+
+desmith.2018.sp.plot = graph.trend(desmith.2018.games.sp, "Save Percentage", "#000000", "#FCB514", "Casey DeSmith(2018)")
+desmith.2018.sp.plot
+```
+
+And now, let's take a look at his shot location data.
+
+```{r}
+desmith.2017.locations.plot = graph.shot.locations(desmith.2017, "#000000", "#FCB514", "Casey DeSmith (2017)")
+desmith.2017.locations.plot
+
+desmith.2018.locations.plot = graph.shot.locations(desmith.2018, "#000000", "#FCB514", "Casey DeSmith (2018)")
+desmith.2018.locations.plot
+```
+
+As we can see, DeSmith has played pretty phenomenally. He's earned his new extension and his play has been pretty consistent. He is the perfect complement for Matt Murray.
+
 ### Marc-Andre Fleury
 
 ### Andrei Vasilevskiy
