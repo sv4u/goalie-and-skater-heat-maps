@@ -342,6 +342,8 @@ murray.2018.locations.plot
 
 From the darkness of each hex bin, we can use that as a percent chance that Murray saved the shot. Though the darkness is not exactly the save percentage of the shots, it's the log chance of Murray seeing the shot. This log chance is a good likelihood function of Murray saving the shot. We can see that Murray's weakness is very close to him. Those shots are most likely to be tipped or deflected shots, not actual shots. We can see his weakness is the top of the circles, based on the X and Y coordinates.
 
+From the graph, we can see that Murray has struggled with shots near the circles. Disregarding tips, it seems like that Murray is positionally sound with goals against near him. However, compared to the right wing, Murray seems weak against shots coming from the left wing side. If teams were to exploit this, it would be beneficial to shoot towards Murray's glove side from the left wing circle.
+
 ### Casey DeSmith
 
 ### Marc-Andre Fleury
