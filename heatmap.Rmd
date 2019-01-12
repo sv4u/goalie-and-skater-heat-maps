@@ -409,6 +409,84 @@ As we can see, DeSmith has played pretty phenomenally. He's earned his new exten
 
 ### Marc-Andre Fleury
 
+Before he was picked by the Vegas Golden Knights in the most recent NHL Expansion Draft, Marc-Andre Fleury was the franchise goaltender for the Pittsburgh Penguins. Drafted first overall in the 2003 NHL Entry Draft, Marc-Andre "Flower" Fleury made his NHL debut in October of 2003. Since thenm he's been the main net-protector for the Penguins (until 2017 that is). His athleticism plus is exceptionally quick reactions makes Flower a premier NHL goaltender. With 3 Stanley Cup victories (2009, 2016, and 2017), Fleury has cemented his place as a top-10 all-time goaltender. With 429 regular season wins, Fleury sits at number 9 for career regular season wins. Only two active goaltenders, Roberto Luongo and Henrik Lundqvist, sit higher above him.
+
+Fleury has been playing phenomenally the past few season. What seems like a second-prime for the Canadian born goaltender, Fleury showed shades of his 2008-2009 season, when he led the Penguins to their third Stanley Cup 
+
+```{r}
+fleury.2016 = get.goalie.data(analysis.2016, "Marc-Andre Fleury")
+fleury.2017 = get.goalie.data(analysis.2017, "Marc-Andre Fleury")
+fleury.2018 = get.goalie.data(analysis.2018, "Marc-Andre Fleury")
+```
+
+Let's start by calculating some of his stats for each season and then tabularizing.
+
+```{r}
+fleury.2016.sp = get.save.percent(fleury.2016)
+fleury.2017.sp = get.save.percent(fleury.2017)
+fleury.2018.sp = get.save.percent(fleury.2018)
+
+fleury.2016.gp = get.goal.percent(fleury.2016)
+fleury.2017.gp = get.goal.percent(fleury.2017)
+fleury.2018.gp = get.goal.percent(fleury.2018)
+
+fleury.2016.spg = get.shots.per.goal(fleury.2016)
+fleury.2017.spg = get.shots.per.goal(fleury.2017)
+fleury.2018.spg = get.shots.per.goal(fleury.2018)
+```
+
+Now, let's put it in a table:
+
+| Season | Save Percent | Goal Percent | Shots Per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2016-2017 | `r fleury.2016.sp` | `r fleury.2016.gp` | `r fleury.2016.spg` |
+| 2017-2018 | `r fleury.2017.sp` | `r fleury.2017.gp` | `r fleury.2017.spg` |
+| 2018-2019 | `r fleury.2018.sp` | `r fleury.2018.gp` | `r fleury.2018.spg` |
+
+We can look at his game by game data also.
+
+```{r}
+fleury.2016.games.sp = get.game.save.percent(fleury.2016)
+fleury.2016.games.gp = get.game.goal.percent(fleury.2016)
+fleury.2016.games.spg = get.game.shots.per.goal(fleury.2016)
+
+fleury.2017.games.sp = get.game.save.percent(fleury.2017)
+fleury.2017.games.gp = get.game.goal.percent(fleury.2017)
+fleury.2017.games.spg = get.game.shots.per.goal(fleury.2017)
+
+fleury.2018.games.sp = get.game.save.percent(fleury.2018)
+fleury.2018.games.gp = get.game.goal.percent(fleury.2018)
+fleury.2018.games.spg = get.game.shots.per.goal(fleury.2018)
+```
+
+Let's look at his save percentage graphs:
+
+```{r}
+fleury.2016.sp.plot = graph.trend(fleury.2016.games.sp, "Save Percentage", "#000000", "#FCB514", "Marc-Andre Fleury (2016)")
+fleury.2016.sp.plot
+
+fleury.2017.sp.plot = graph.trend(fleury.2017.games.sp, "Save Percentage", "#B4975A", "#333F42", "Marc-Andre Fleury (2017)")
+fleury.2017.sp.plot
+
+fleury.2018.sp.plot = graph.trend(fleury.2018.games.sp, "Save Percentage", "#B4975A", "#333F42", "Marc-Andre Fleury (2018)")
+fleury.2018.sp.plot
+```
+
+And now, let's take a look at his shot location data.
+
+```{r}
+fleury.2016.locations.plot = graph.shot.locations(fleury.2016, "#000000", "#FCB514", "Marc-Andre Fleury (2016)")
+fleury.2016.locations.plot
+
+fleury.2017.locations.plot = graph.shot.locations(fleury.2017, "#B4975A", "#333F42", "Marc-Andre Fleury (2017)")
+fleury.2017.locations.plot
+
+fleury.2018.locations.plot = graph.shot.locations(fleury.2018, "#B4975A", "#333F42", "Marc-Andre Fleury (2018)")
+fleury.2018.locations.plot
+```
+
+Fleury has shown exceptional consistency. For any young goaltender breaking into the league, he should be a top-role model.
+
 ### Andrei Vasilevskiy
 
 ### Carey Price
