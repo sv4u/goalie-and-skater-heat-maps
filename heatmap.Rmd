@@ -432,6 +432,7 @@ Before he was picked by the Vegas Golden Knights in the most recent NHL Expansio
 Fleury has been playing phenomenally the past few season. What seems like a second-prime for the Canadian born goaltender, Fleury showed shades of his 2008-2009 season, when he led the Penguins to their third Stanley Cup 
 
 ```{r}
+fleury.2015 = get.goalie.data(analysis.2015, "Marc-Andre Fleury")
 fleury.2016 = get.goalie.data(analysis.2016, "Marc-Andre Fleury")
 fleury.2017 = get.goalie.data(analysis.2017, "Marc-Andre Fleury")
 fleury.2018 = get.goalie.data(analysis.2018, "Marc-Andre Fleury")
@@ -440,14 +441,17 @@ fleury.2018 = get.goalie.data(analysis.2018, "Marc-Andre Fleury")
 Let's start by calculating some of his stats for each season and then tabularizing.
 
 ```{r}
+fleury.2015.sp = get.save.percent(fleury.2015)
 fleury.2016.sp = get.save.percent(fleury.2016)
 fleury.2017.sp = get.save.percent(fleury.2017)
 fleury.2018.sp = get.save.percent(fleury.2018)
 
+fleury.2015.gp = get.goal.percent(fleury.2015)
 fleury.2016.gp = get.goal.percent(fleury.2016)
 fleury.2017.gp = get.goal.percent(fleury.2017)
 fleury.2018.gp = get.goal.percent(fleury.2018)
 
+fleury.2015.spg = get.shots.per.goal(fleury.2015)
 fleury.2016.spg = get.shots.per.goal(fleury.2016)
 fleury.2017.spg = get.shots.per.goal(fleury.2017)
 fleury.2018.spg = get.shots.per.goal(fleury.2018)
@@ -457,6 +461,7 @@ Now, let's put it in a table:
 
 | Season | Save Percent | Goal Percent | Shots Per Goal |
 | ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r fleury.2015.sp` | `r fleury.2015.gp` | `r fleury.2015.spg` |
 | 2016-2017 | `r fleury.2016.sp` | `r fleury.2016.gp` | `r fleury.2016.spg` |
 | 2017-2018 | `r fleury.2017.sp` | `r fleury.2017.gp` | `r fleury.2017.spg` |
 | 2018-2019 | `r fleury.2018.sp` | `r fleury.2018.gp` | `r fleury.2018.spg` |
@@ -464,6 +469,10 @@ Now, let's put it in a table:
 We can look at his game by game data also.
 
 ```{r}
+fleury.2015.games.sp = get.game.save.percent(fleury.2015)
+fleury.2015.games.gp = get.game.goal.percent(fleury.2015)
+fleury.2015.games.spg = get.game.shots.per.goal(fleury.2015)
+
 fleury.2016.games.sp = get.game.save.percent(fleury.2016)
 fleury.2016.games.gp = get.game.goal.percent(fleury.2016)
 fleury.2016.games.spg = get.game.shots.per.goal(fleury.2016)
@@ -480,6 +489,9 @@ fleury.2018.games.spg = get.game.shots.per.goal(fleury.2018)
 Let's look at his save percentage graphs:
 
 ```{r}
+fleury.2015.sp.plot = graph.trend(fleury.2015.games.sp, "Save Percentage", "#000000", "#FCB514", "Marc-Andre Fleury (2015)")
+fleury.2015.sp.plot
+
 fleury.2016.sp.plot = graph.trend(fleury.2016.games.sp, "Save Percentage", "#000000", "#FCB514", "Marc-Andre Fleury (2016)")
 fleury.2016.sp.plot
 
@@ -493,6 +505,9 @@ fleury.2018.sp.plot
 And now, let's take a look at his shot location data.
 
 ```{r}
+fleury.2015.locations.plot = graph.shot.locations(fleury.2015, "#000000", "#FCB514", "Marc-Andre Fleury (2015)")
+fleury.2015.locations.plot
+
 fleury.2016.locations.plot = graph.shot.locations(fleury.2016, "#000000", "#FCB514", "Marc-Andre Fleury (2016)")
 fleury.2016.locations.plot
 
