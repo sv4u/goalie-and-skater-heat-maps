@@ -522,6 +522,97 @@ Fleury has shown exceptional consistency. For any young goaltender breaking into
 
 ### Braden Holtby
 
+After exercising his playoff demons during the 2018 Stanley Cup Playoffs, Braden Holtby has lived up to his expectations. His play has been phenomenal during both the regular season and playoffs. Let's see how he's been since 2015.
+
+```{r}
+holtby.2015 = get.goalie.data(analysis.2015, "Braden Holtby")
+holtby.2016 = get.goalie.data(analysis.2016, "Braden Holtby")
+holtby.2017 = get.goalie.data(analysis.2017, "Braden Holtby")
+holtby.2018 = get.goalie.data(analysis.2018, "Braden Holtby")
+```
+
+Let's start by calculating some of his stats for each season and then tabularizing.
+
+```{r}
+holtby.2015.sp = get.save.percent(holtby.2015)
+holtby.2016.sp = get.save.percent(holtby.2016)
+holtby.2017.sp = get.save.percent(holtby.2017)
+holtby.2018.sp = get.save.percent(holtby.2018)
+
+holtby.2015.gp = get.goal.percent(holtby.2015)
+holtby.2016.gp = get.goal.percent(holtby.2016)
+holtby.2017.gp = get.goal.percent(holtby.2017)
+holtby.2018.gp = get.goal.percent(holtby.2018)
+
+holtby.2015.spg = get.shots.per.goal(holtby.2015)
+holtby.2016.spg = get.shots.per.goal(holtby.2016)
+holtby.2017.spg = get.shots.per.goal(holtby.2017)
+holtby.2018.spg = get.shots.per.goal(holtby.2018)
+```
+
+Now, let's put it in a table:
+
+| Season | Save Percent | Goal Percent | Shots Per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r holtby.2015.sp` | `r holtby.2015.gp` | `r holtby.2015.spg` |
+| 2016-2017 | `r holtby.2016.sp` | `r holtby.2016.gp` | `r holtby.2016.spg` |
+| 2017-2018 | `r holtby.2017.sp` | `r holtby.2017.gp` | `r holtby.2017.spg` |
+| 2018-2019 | `r holtby.2018.sp` | `r holtby.2018.gp` | `r holtby.2018.spg` |
+
+We can look at his game by game data also.
+
+```{r}
+holtby.2015.games.sp = get.game.save.percent(holtby.2015)
+holtby.2015.games.gp = get.game.goal.percent(holtby.2015)
+holtby.2015.games.spg = get.game.shots.per.goal(holtby.2015)
+
+holtby.2016.games.sp = get.game.save.percent(holtby.2016)
+holtby.2016.games.gp = get.game.goal.percent(holtby.2016)
+holtby.2016.games.spg = get.game.shots.per.goal(holtby.2016)
+
+holtby.2017.games.sp = get.game.save.percent(holtby.2017)
+holtby.2017.games.gp = get.game.goal.percent(holtby.2017)
+holtby.2017.games.spg = get.game.shots.per.goal(holtby.2017)
+
+holtby.2018.games.sp = get.game.save.percent(holtby.2018)
+holtby.2018.games.gp = get.game.goal.percent(holtby.2018)
+holtby.2018.games.spg = get.game.shots.per.goal(holtby.2018)
+```
+
+Let's look at his save percentage graphs:
+
+```{r}
+holtby.2015.sp.plot = graph.trend(holtby.2015.games.sp, "Save Percentage", "#041E42", "#C8102E", "Braden Holtby (2015)")
+holtby.2015.sp.plot
+
+holtby.2016.sp.plot = graph.trend(holtby.2016.games.sp, "Save Percentage", "#041E42", "#C8102E", "Braden Holtby (2016)")
+holtby.2016.sp.plot
+
+holtby.2017.sp.plot = graph.trend(holtby.2017.games.sp, "Save Percentage", "#041E42", "#C8102E", "Braden Holtby (2017)")
+holtby.2017.sp.plot
+
+holtby.2018.sp.plot = graph.trend(holtby.2018.games.sp, "Save Percentage", "#041E42", "#C8102E", "Braden Holtby (2018)")
+holtby.2018.sp.plot
+```
+
+And now, let's take a look at his shot location data.
+
+```{r}
+holtby.2015.locations.plot = graph.shot.locations(holtby.2015, "#041E42", "#C8102E", "Braden Holtby (2015)")
+holtby.2015.locations.plot
+
+holtby.2016.locations.plot = graph.shot.locations(holtby.2016, "#041E42", "#C8102E", "Braden Holtby (2016)")
+holtby.2016.locations.plot
+
+holtby.2017.locations.plot = graph.shot.locations(holtby.2017, "#041E42", "#C8102E", "Braden Holtby (2017)")
+holtby.2017.locations.plot
+
+holtby.2018.locations.plot = graph.shot.locations(holtby.2018, "#041E42", "#C8102E", "Braden Holtby (2018)")
+holtby.2018.locations.plot
+```
+
+Holtby has had the trend of playing poorly near the end of the season. However, it seems like Holtby is currently going against his negative trend this season. His main weakness seems to be shots from the left circle. This is probably aimed towards his glove hand, which is significantly weaker than his positional play.
+
 ### John Gibson
 
 ## Skaters {.tabset .tabset-fade}
