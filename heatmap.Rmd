@@ -520,10 +520,6 @@ fleury.2018.locations.plot
 
 Fleury has shown exceptional consistency. For any young goaltender breaking into the league, he should be a top-role model.
 
-### Andrei Vasilevskiy
-
-### Carey Price
-
 ### Braden Holtby
 
 ### John Gibson
@@ -535,8 +531,6 @@ Fleury has shown exceptional consistency. For any young goaltender breaking into
 ### Evgeni Malkin
 
 ### Alex Ovechkin
-
-### Nikita Kucherov
 
 ### Jake Guentzel
 
