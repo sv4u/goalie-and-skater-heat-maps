@@ -625,6 +625,73 @@ Holtby has had the trend of playing poorly near the end of the season. However, 
 
 ### Jake Guentzel
 
+Jake Guentzel has been an elite farm-system talent for the Penguins.
+
+```{r}
+guentzel.2016 = get.skater.data(analysis.2016, "Jake Guentzel")
+guentzel.2017 = get.skater.data(analysis.2017, "Jake Guentzel")
+guentzel.2018 = get.skater.data(analysis.2018, "Jake Guentzel")
+```
+
+Let's get some of his stats.
+
+```{r}
+guentzel.2016.sp = get.save.percent(guentzel.2016)
+guentzel.2016.game.sp = get.game.save.percent(guentzel.2016)
+guentzel.2017.sp = get.save.percent(guentzel.2017)
+guentzel.2017.game.sp = get.game.save.percent(guentzel.2017)
+guentzel.2018.sp = get.save.percent(guentzel.2018)
+guentzel.2018.game.sp = get.game.save.percent(guentzel.2018)
+
+guentzel.2016.gp = get.goal.percent(guentzel.2016)
+guentzel.2016.game.gp = get.game.goal.percent(guentzel.2016)
+guentzel.2017.gp = get.goal.percent(guentzel.2017)
+guentzel.2017.game.gp = get.game.goal.percent(guentzel.2017)
+guentzel.2018.gp = get.goal.percent(guentzel.2018)
+guentzel.2018.game.gp = get.game.goal.percent(guentzel.2018)
+
+guentzel.2016.spg = get.shots.per.goal(guentzel.2016)
+guentzel.2016.game.spg = get.game.shots.per.goal(guentzel.2016)
+guentzel.2017.spg = get.shots.per.goal(guentzel.2017)
+guentzel.2017.game.spg = get.game.shots.per.goal(guentzel.2017)
+guentzel.2018.spg = get.shots.per.goal(guentzel.2018)
+guentzel.2018.game.spg = get.game.shots.per.goal(guentzel.2018)
+```
+
+Here's a table of his data.
+
+| Season | Save Percent | Goal Percent | Shots per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2016-2017 | `r guentzel.2016.sp` | `r guentzel.2016.gp` | `r guentzel.2016.spg` |
+| 2017-2018 | `r guentzel.2017.sp` | `r guentzel.2017.gp` | `r guentzel.2017.spg` |
+| 2018-2019 | `r guentzel.2018.sp` | `r guentzel.2018.gp` | `r guentzel.2018.spg` |
+
+From this data, we can see that Guentzel isn't a sniper; instead he is a volume shooter. Let's take a look at his heatmaps.
+
+```{r}
+guentzel.2016.locations.plot = graph.shot.locations(guentzel.2016, "#000000", "#FCB514", "Jake Guentzel (2016)")
+guentzel.2016.locations.plot
+
+guentzel.2017.locations.plot = graph.shot.locations(guentzel.2017, "#000000", "#FCB514", "Jake Guentzel (2017)")
+guentzel.2017.locations.plot
+
+guentzel.2018.locations.plot = graph.shot.locations(guentzel.2018, "#000000", "#FCB514", "Jake Guentzel (2018)")
+guentzel.2018.locations.plot
+```
+
+From this, we can see that Jake Guentzel has a lot of success around the net. Let's look at this goal percentage per game now.
+
+```{r}
+guentzel.2016.gp.plot = graph.trend(guentzel.2016.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Jake Guentzel (2016)")
+guentzel.2016.gp.plot
+
+guentzel.2017.gp.plot = graph.trend(guentzel.2017.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Jake Guentzel (2017)")
+guentzel.2017.gp.plot
+
+guentzel.2018.gp.plot = graph.trend(guentzel.2018.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Jake Guentzel (2018)")
+guentzel.2018.gp.plot
+```
+
 ### Erik Karlsson
 
 ### Kris Letang
