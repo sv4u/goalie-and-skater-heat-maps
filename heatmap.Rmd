@@ -615,6 +615,95 @@ Holtby has had the trend of playing poorly near the end of the season. However, 
 
 ### John Gibson
 
+Hailing from Pittsburgh Pennsylvania, John Gibson is the 25-year-old starter for the Anaheim Ducks. In his 6 years in the NHL, Gibson has played a total of 221 games, starting 213 games. In his career, Gibson boasts a 2.37 GAA and 92.2% save percentage. Let's start by looking at his growth per season.
+
+```{r}
+gibson.2015 = get.goalie.data(analysis.2015, "John Gibson")
+gibson.2016 = get.goalie.data(analysis.2016, "John Gibson")
+gibson.2017 = get.goalie.data(analysis.2017, "John Gibson")
+gibson.2018 = get.goalie.data(analysis.2018, "John Gibson")
+```
+
+Let's start by calculating some of his stats for each season and then tabularizing.
+
+```{r}
+gibson.2015.sp = get.save.percent(gibson.2015)
+gibson.2016.sp = get.save.percent(gibson.2016)
+gibson.2017.sp = get.save.percent(gibson.2017)
+gibson.2018.sp = get.save.percent(gibson.2018)
+
+gibson.2015.gp = get.goal.percent(gibson.2015)
+gibson.2016.gp = get.goal.percent(gibson.2016)
+gibson.2017.gp = get.goal.percent(gibson.2017)
+gibson.2018.gp = get.goal.percent(gibson.2018)
+
+gibson.2015.spg = get.shots.per.goal(gibson.2015)
+gibson.2016.spg = get.shots.per.goal(gibson.2016)
+gibson.2017.spg = get.shots.per.goal(gibson.2017)
+gibson.2018.spg = get.shots.per.goal(gibson.2018)
+```
+
+Now, let's put it in a table:
+
+| Season | Save Percent | Goal Percent | Shots Per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r gibson.2015.sp` | `r gibson.2015.gp` | `r gibson.2015.spg` |
+| 2016-2017 | `r gibson.2016.sp` | `r gibson.2016.gp` | `r gibson.2016.spg` |
+| 2017-2018 | `r gibson.2017.sp` | `r gibson.2017.gp` | `r gibson.2017.spg` |
+| 2018-2019 | `r gibson.2018.sp` | `r gibson.2018.gp` | `r gibson.2018.spg` |
+
+We can look at his game by game data also.
+
+```{r}
+gibson.2015.games.sp = get.game.save.percent(gibson.2015)
+gibson.2015.games.gp = get.game.goal.percent(gibson.2015)
+gibson.2015.games.spg = get.game.shots.per.goal(gibson.2015)
+
+gibson.2016.games.sp = get.game.save.percent(gibson.2016)
+gibson.2016.games.gp = get.game.goal.percent(gibson.2016)
+gibson.2016.games.spg = get.game.shots.per.goal(gibson.2016)
+
+gibson.2017.games.sp = get.game.save.percent(gibson.2017)
+gibson.2017.games.gp = get.game.goal.percent(gibson.2017)
+gibson.2017.games.spg = get.game.shots.per.goal(gibson.2017)
+
+gibson.2018.games.sp = get.game.save.percent(gibson.2018)
+gibson.2018.games.gp = get.game.goal.percent(gibson.2018)
+gibson.2018.games.spg = get.game.shots.per.goal(gibson.2018)
+```
+
+Let's look at his save percentage graphs:
+
+```{r}
+gibson.2015.sp.plot = graph.trend(gibson.2015.games.sp, "Save Percentage", "#F47A38", "#B09862", "John Gibson (2015)")
+gibson.2015.sp.plot
+
+gibson.2016.sp.plot = graph.trend(gibson.2016.games.sp, "Save Percentage", "#F47A38", "#B09862", "John Gibson (2016)")
+gibson.2016.sp.plot
+
+gibson.2017.sp.plot = graph.trend(gibson.2017.games.sp, "Save Percentage", "#F47A38", "#B09862", "John Gibson (2017)")
+gibson.2017.sp.plot
+
+gibson.2018.sp.plot = graph.trend(gibson.2018.games.sp, "Save Percentage", "#F47A38", "#B09862", "John Gibson (2018)")
+gibson.2018.sp.plot
+```
+
+And now, let's take a look at his shot location data.
+
+```{r}
+gibson.2015.locations.plot = graph.shot.locations(gibson.2015, "#F47A38", "#B09862", "John Gibson (2015)")
+gibson.2015.locations.plot
+
+gibson.2016.locations.plot = graph.shot.locations(gibson.2016, "#F47A38", "#B09862", "John Gibson (2016)")
+gibson.2016.locations.plot
+
+gibson.2017.locations.plot = graph.shot.locations(gibson.2017, "#F47A38", "#B09862", "John Gibson (2017)")
+gibson.2017.locations.plot
+
+gibson.2018.locations.plot = graph.shot.locations(gibson.2018, "#F47A38", "#B09862", "John Gibson (2018)")
+gibson.2018.locations.plot
+```
+
 ## Skaters {.tabset .tabset-fade}
 
 ### Sidney Crosby
