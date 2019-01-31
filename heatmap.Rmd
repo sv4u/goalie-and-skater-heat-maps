@@ -35,7 +35,7 @@ library(ggplot2)
 
 # Data Formatting
 
-To start, we need to read in our data. Our data is formatted nicely in CSV format. We have data from the, 2015-2016 season, 2016-2017 season, 2017-2018 season, and 2018-2019 season (up to 1/7/19). This data was downloaded from [MoneyPuck](http://www.moneypuck.com). Let's first start by loading in all three seasons of data:
+To start, we need to read in our data. Our data is formatted nicely in CSV format. We have data from the, 2015-2016 season, 2016-2017 season, 2017-2018 season, and 2018-2019 season (up to 1/30/19). This data was downloaded from [MoneyPuck](http://www.moneypuck.com). Let's first start by loading in all three seasons of data:
 
 ```{r}
 data.2015 = read.csv("data/2015.csv")
@@ -1108,3 +1108,84 @@ karlsson.2018.gp.plot
 ```
 
 ### Kris Letang
+
+Kris Letang has suffered through many major injuries but still performs like a Norris Trophy winning defensemen. Let's see his growth through the years.
+
+```{r}
+letang.2015 = get.skater.data(analysis.2015, "Kris Letang")
+letang.2016 = get.skater.data(analysis.2016, "Kris Letang")
+letang.2017 = get.skater.data(analysis.2017, "Kris Letang")
+letang.2018 = get.skater.data(analysis.2018, "Kris Letang")
+```
+
+Let's get some of his stats.
+
+```{r}
+letang.2015.sp = get.save.percent(letang.2015)
+letang.2015.game.sp = get.game.save.percent(letang.2015)
+letang.2016.sp = get.save.percent(letang.2016)
+letang.2016.game.sp = get.game.save.percent(letang.2016)
+letang.2017.sp = get.save.percent(letang.2017)
+letang.2017.game.sp = get.game.save.percent(letang.2017)
+letang.2018.sp = get.save.percent(letang.2018)
+letang.2018.game.sp = get.game.save.percent(letang.2018)
+
+letang.2015.gp = get.goal.percent(letang.2015)
+letang.2015.game.gp = get.game.goal.percent(letang.2015)
+letang.2016.gp = get.goal.percent(letang.2016)
+letang.2016.game.gp = get.game.goal.percent(letang.2016)
+letang.2017.gp = get.goal.percent(letang.2017)
+letang.2017.game.gp = get.game.goal.percent(letang.2017)
+letang.2018.gp = get.goal.percent(letang.2018)
+letang.2018.game.gp = get.game.goal.percent(letang.2018)
+
+letang.2015.spg = get.shots.per.goal(letang.2015)
+letang.2015.game.spg = get.game.shots.per.goal(letang.2015)
+letang.2016.spg = get.shots.per.goal(letang.2016)
+letang.2016.game.spg = get.game.shots.per.goal(letang.2016)
+letang.2017.spg = get.shots.per.goal(letang.2017)
+letang.2017.game.spg = get.game.shots.per.goal(letang.2017)
+letang.2018.spg = get.shots.per.goal(letang.2018)
+letang.2018.game.spg = get.game.shots.per.goal(letang.2018)
+```
+
+Here's a table of his data.
+
+| Season | Save Percent | Goal Percent | Shots per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r letang.2015.sp` | `r letang.2015.gp` | `r letang.2015.spg` |
+| 2016-2017 | `r letang.2016.sp` | `r letang.2016.gp` | `r letang.2016.spg` |
+| 2017-2018 | `r letang.2017.sp` | `r letang.2017.gp` | `r letang.2017.spg` |
+| 2018-2019 | `r letang.2018.sp` | `r letang.2018.gp` | `r letang.2018.spg` |
+
+Let's take a look at his heatmaps.
+
+```{r}
+letang.2015.locations.plot = graph.shot.locations(letang.2015, "#000000", "#FCB514", "Kris Letang (2015)")
+letang.2015.locations.plot
+
+letang.2016.locations.plot = graph.shot.locations(letang.2016, "#000000", "#FCB514", "Kris Letang (2016)")
+letang.2016.locations.plot
+
+letang.2017.locations.plot = graph.shot.locations(letang.2017, "#000000", "#FCB514", "Kris Letang (2017)")
+letang.2017.locations.plot
+
+letang.2018.locations.plot = graph.shot.locations(letang.2018, "#000000", "#FCB514", "Kris Letang (2018)")
+letang.2018.locations.plot
+```
+
+Let's look at this goal percentage per game now.
+
+```{r}
+letang.2015.gp.plot = graph.trend(letang.2015.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Kris Letang (2015)")
+letang.2015.gp.plot
+
+letang.2016.gp.plot = graph.trend(letang.2016.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Kris Letang (2016)")
+letang.2016.gp.plot
+
+letang.2017.gp.plot = graph.trend(letang.2017.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Kris Letang (2017)")
+letang.2017.gp.plot
+
+letang.2018.gp.plot = graph.trend(letang.2018.game.gp, "Shooting (Goal) Percentage", "#000000", "#FCB514", "Kris Letang (2018)")
+letang.2018.gp.plot
+```
