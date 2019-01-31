@@ -1026,4 +1026,85 @@ guentzel.2018.gp.plot
 
 ### Erik Karlsson
 
+A Norris Trophy caliber defensemen, Erik Karlsson helped redefined the modern defender. His exceptional speed as well as his quick passing ability has him as a franchise talent.
+
+```{r}
+karlsson.2015 = get.skater.data(analysis.2015, "Erik Karlsson")
+karlsson.2016 = get.skater.data(analysis.2016, "Erik Karlsson")
+karlsson.2017 = get.skater.data(analysis.2017, "Erik Karlsson")
+karlsson.2018 = get.skater.data(analysis.2018, "Erik Karlsson")
+```
+
+Let's get some of his stats.
+
+```{r}
+karlsson.2015.sp = get.save.percent(karlsson.2015)
+karlsson.2015.game.sp = get.game.save.percent(karlsson.2015)
+karlsson.2016.sp = get.save.percent(karlsson.2016)
+karlsson.2016.game.sp = get.game.save.percent(karlsson.2016)
+karlsson.2017.sp = get.save.percent(karlsson.2017)
+karlsson.2017.game.sp = get.game.save.percent(karlsson.2017)
+karlsson.2018.sp = get.save.percent(karlsson.2018)
+karlsson.2018.game.sp = get.game.save.percent(karlsson.2018)
+
+karlsson.2015.gp = get.goal.percent(karlsson.2015)
+karlsson.2015.game.gp = get.game.goal.percent(karlsson.2015)
+karlsson.2016.gp = get.goal.percent(karlsson.2016)
+karlsson.2016.game.gp = get.game.goal.percent(karlsson.2016)
+karlsson.2017.gp = get.goal.percent(karlsson.2017)
+karlsson.2017.game.gp = get.game.goal.percent(karlsson.2017)
+karlsson.2018.gp = get.goal.percent(karlsson.2018)
+karlsson.2018.game.gp = get.game.goal.percent(karlsson.2018)
+
+karlsson.2015.spg = get.shots.per.goal(karlsson.2015)
+karlsson.2015.game.spg = get.game.shots.per.goal(karlsson.2015)
+karlsson.2016.spg = get.shots.per.goal(karlsson.2016)
+karlsson.2016.game.spg = get.game.shots.per.goal(karlsson.2016)
+karlsson.2017.spg = get.shots.per.goal(karlsson.2017)
+karlsson.2017.game.spg = get.game.shots.per.goal(karlsson.2017)
+karlsson.2018.spg = get.shots.per.goal(karlsson.2018)
+karlsson.2018.game.spg = get.game.shots.per.goal(karlsson.2018)
+```
+
+Here's a table of his data.
+
+| Season | Save Percent | Goal Percent | Shots per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r karlsson.2015.sp` | `r karlsson.2015.gp` | `r karlsson.2015.spg` |
+| 2016-2017 | `r karlsson.2016.sp` | `r karlsson.2016.gp` | `r karlsson.2016.spg` |
+| 2017-2018 | `r karlsson.2017.sp` | `r karlsson.2017.gp` | `r karlsson.2017.spg` |
+| 2018-2019 | `r karlsson.2018.sp` | `r karlsson.2018.gp` | `r karlsson.2018.spg` |
+
+Let's take a look at his heatmaps.
+
+```{r}
+karlsson.2015.locations.plot = graph.shot.locations(karlsson.2015, "#E31837", "#C69214", "Erik Karlsson (2015)")
+karlsson.2015.locations.plot
+
+karlsson.2016.locations.plot = graph.shot.locations(karlsson.2016, "#E31837", "#C69214", "Erik Karlsson (2016)")
+karlsson.2016.locations.plot
+
+karlsson.2017.locations.plot = graph.shot.locations(karlsson.2017, "#E31837", "#C69214", "Erik Karlsson (2017)")
+karlsson.2017.locations.plot
+
+karlsson.2018.locations.plot = graph.shot.locations(karlsson.2018, "#006D75", "#EA7200", "Erik Karlsson (2018)")
+karlsson.2018.locations.plot
+```
+
+Let's look at this goal percentage per game now.
+
+```{r}
+karlsson.2015.gp.plot = graph.trend(karlsson.2015.game.gp, "Shooting (Goal) Percentage", "#E31837", "#C69214", "Erik Karlsson (2015)")
+karlsson.2015.gp.plot
+
+karlsson.2016.gp.plot = graph.trend(karlsson.2016.game.gp, "Shooting (Goal) Percentage", "#E31837", "#C69214", "Erik Karlsson (2016)")
+karlsson.2016.gp.plot
+
+karlsson.2017.gp.plot = graph.trend(karlsson.2017.game.gp, "Shooting (Goal) Percentage", "#E31837", "#C69214", "Erik Karlsson (2017)")
+karlsson.2017.gp.plot
+
+karlsson.2018.gp.plot = graph.trend(karlsson.2018.game.gp, "Shooting (Goal) Percentage", "#006D75", "#EA7200", "Erik Karlsson (2018)")
+karlsson.2018.gp.plot
+```
+
 ### Kris Letang
