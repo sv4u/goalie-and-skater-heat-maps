@@ -874,6 +874,87 @@ malkin.2018.gp.plot
 
 ### Alex Ovechkin
 
+Alexander Ovechkin's style of play is simply eletric. With an extremely hard and accurate slap shot mixed in with a deadly quick wrist shot, Ovechkin is a scoring machine. The Russian-born winger has cemented himself as one of the best Russians to ever play in the NHL.
+
+```{r}
+ovechkin.2015 = get.skater.data(analysis.2015, "Alex Ovechkin")
+ovechkin.2016 = get.skater.data(analysis.2016, "Alex Ovechkin")
+ovechkin.2017 = get.skater.data(analysis.2017, "Alex Ovechkin")
+ovechkin.2018 = get.skater.data(analysis.2018, "Alex Ovechkin")
+```
+
+Let's get some of his stats.
+
+```{r}
+ovechkin.2015.sp = get.save.percent(ovechkin.2015)
+ovechkin.2015.game.sp = get.game.save.percent(ovechkin.2015)
+ovechkin.2016.sp = get.save.percent(ovechkin.2016)
+ovechkin.2016.game.sp = get.game.save.percent(ovechkin.2016)
+ovechkin.2017.sp = get.save.percent(ovechkin.2017)
+ovechkin.2017.game.sp = get.game.save.percent(ovechkin.2017)
+ovechkin.2018.sp = get.save.percent(ovechkin.2018)
+ovechkin.2018.game.sp = get.game.save.percent(ovechkin.2018)
+
+ovechkin.2015.gp = get.goal.percent(ovechkin.2015)
+ovechkin.2015.game.gp = get.game.goal.percent(ovechkin.2015)
+ovechkin.2016.gp = get.goal.percent(ovechkin.2016)
+ovechkin.2016.game.gp = get.game.goal.percent(ovechkin.2016)
+ovechkin.2017.gp = get.goal.percent(ovechkin.2017)
+ovechkin.2017.game.gp = get.game.goal.percent(ovechkin.2017)
+ovechkin.2018.gp = get.goal.percent(ovechkin.2018)
+ovechkin.2018.game.gp = get.game.goal.percent(ovechkin.2018)
+
+ovechkin.2015.spg = get.shots.per.goal(ovechkin.2015)
+ovechkin.2015.game.spg = get.game.shots.per.goal(ovechkin.2015)
+ovechkin.2016.spg = get.shots.per.goal(ovechkin.2016)
+ovechkin.2016.game.spg = get.game.shots.per.goal(ovechkin.2016)
+ovechkin.2017.spg = get.shots.per.goal(ovechkin.2017)
+ovechkin.2017.game.spg = get.game.shots.per.goal(ovechkin.2017)
+ovechkin.2018.spg = get.shots.per.goal(ovechkin.2018)
+ovechkin.2018.game.spg = get.game.shots.per.goal(ovechkin.2018)
+```
+
+Here's a table of his data.
+
+| Season | Save Percent | Goal Percent | Shots per Goal |
+| ------ | ------------ | ------------ | -------------- |
+| 2015-2016 | `r ovechkin.2015.sp` | `r ovechkin.2015.gp` | `r ovechkin.2015.spg` |
+| 2016-2017 | `r ovechkin.2016.sp` | `r ovechkin.2016.gp` | `r ovechkin.2016.spg` |
+| 2017-2018 | `r ovechkin.2017.sp` | `r ovechkin.2017.gp` | `r ovechkin.2017.spg` |
+| 2018-2019 | `r ovechkin.2018.sp` | `r ovechkin.2018.gp` | `r ovechkin.2018.spg` |
+
+Let's take a look at his heatmaps.
+
+```{r}
+ovechkin.2015.locations.plot = graph.shot.locations(ovechkin.2015, "#041E42", "#C8102E", "Alex Ovechkin (2015)")
+ovechkin.2015.locations.plot
+
+ovechkin.2016.locations.plot = graph.shot.locations(ovechkin.2016, "#041E42", "#C8102E", "Alex Ovechkin (2016)")
+ovechkin.2016.locations.plot
+
+ovechkin.2017.locations.plot = graph.shot.locations(ovechkin.2017, "#041E42", "#C8102E", "Alex Ovechkin (2017)")
+ovechkin.2017.locations.plot
+
+ovechkin.2018.locations.plot = graph.shot.locations(ovechkin.2018, "#041E42", "#C8102E", "Alex Ovechkin (2018)")
+ovechkin.2018.locations.plot
+```
+
+Let's look at this goal percentage per game now.
+
+```{r}
+ovechkin.2015.gp.plot = graph.trend(ovechkin.2015.game.gp, "Shooting (Goal) Percentage", "#041E42", "#C8102E", "Alex Ovechkin (2015)")
+ovechkin.2015.gp.plot
+
+ovechkin.2016.gp.plot = graph.trend(ovechkin.2016.game.gp, "Shooting (Goal) Percentage", "#041E42", "#C8102E", "Alex Ovechkin (2016)")
+ovechkin.2016.gp.plot
+
+ovechkin.2017.gp.plot = graph.trend(ovechkin.2017.game.gp, "Shooting (Goal) Percentage", "#041E42", "#C8102E", "Alex Ovechkin (2017)")
+ovechkin.2017.gp.plot
+
+ovechkin.2018.gp.plot = graph.trend(ovechkin.2018.game.gp, "Shooting (Goal) Percentage", "#041E42", "#C8102E", "Alex Ovechkin (2018)")
+ovechkin.2018.gp.plot
+```
+
 ### Jake Guentzel
 
 Jake Guentzel has been an elite farm-system talent for the Penguins.
